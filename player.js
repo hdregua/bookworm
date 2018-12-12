@@ -11,10 +11,10 @@ class Player{
 
 	_generateLetters(count){
 		const vowels = 'AEIOU';
-		const letters = 'AABBBCCCDDEEFFGGHHIIJJKKLLMMNNNOOPPQRRSSSTTUUVVWXYYYZ';
+		const letters = 'ABBBCCCDDEFFGGHHIJJKKLLMMNNNOPPQRRSSSTTUVVWXYYYZ';
 		var lettersGen = [];
 
-		var vowels_count = Math.ceil(count*0.2);
+		var vowels_count = Math.ceil(count*0.1);
 
 		for (var i = 0; i < vowels_count; i++) {
 			var idx = Math.floor(Math.random() * 5);
@@ -32,6 +32,11 @@ class Player{
 	_generateNewLetters(count) {
 		var lettersGen = this._generateLetters(count)
 		this.socket.emit('generated_letters', lettersGen);
+	}
+
+	_refreshBasket() {
+		var lettersGen = this._generateLetters(12)
+		this.socket.emit('new_letter_basket', {basket: lettersGen, turn: 0});
 	}
 
 	_characterizeLetter(letter){

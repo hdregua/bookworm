@@ -35,8 +35,7 @@ io.sockets.on('connection', function(socket){
 	});
 
 	socket.on('generate_letters', function(count){
-		var playerIndex;
-		playerIndex = players[0].socket == socket ? 0 : 1;
+		var playerIndex = players[0].socket == socket ? 0 : 1;
 		game._generateNewLetters(count, playerIndex);
 	});
 
@@ -44,14 +43,24 @@ io.sockets.on('connection', function(socket){
 		io.emit('message', text)
 	});
 
+	socket.on('refresh_basket', function(){
+		var playerIndex = players[0].socket == socket ? 0 : 1;
+		game._refreshBasket(playerIndex);
+		game._changeTurn((playerIndex+1)%2);
+		game._sendToPlayer((playerIndex+1)%2, "Your turn!")
+	});
+
 	socket.on('submit_word', function(word) {
 		var checkWord = require('check-word');
 		var dictionary  = checkWord('en');
-		if(dictionary.check(word.toLowerCase())){
-			var opponentIndex = players[0].socket == socket ? 1 : 0;
-			game._sendToOpponent(opponentIndex, word);
-		} else {
+		var opponentIndex = players[0].socket == socket ? 1 : 0;
 
+		if(dictionary.check(word.toLowerCase())){
+			game._sendToOpponent(opponentIndex, word);
+			game._changeTurn(opponentIndex);
+			game._sendSuccessMessage((opponentIndex+1)%2);
+		} else {
+			game._sendToPlayer((opponentIndex+1)%2, "Invalid Word!");
 		}
 	});
 })
