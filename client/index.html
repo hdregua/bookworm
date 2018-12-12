@@ -1,0 +1,107 @@
+
+
+<html>
+<head>
+	<link rel="stylesheet" href="client/css/main.css">
+</head>
+<body>
+
+<button onclick="generate()">Generate</button>
+<div id="events"></div>
+
+<!-- <script src="client/js/client.js"></script> -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/1.4.5/socket.io.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+	$(document).on('click','.basket-letter-btn',function(){
+		var clonedBtn = $(this).clone().removeClass('basket-letter-btn').addClass('rack-letter-btn').attr('parent', $(this).parent().attr('id'));
+		$("#rack").append(clonedBtn);
+		$(this).remove();
+	});
+
+	$(document).on('click','.rack-letter-btn',function(){
+		var clonedBtn = $(this).clone().removeClass('rack-letter-btn').addClass('basket-letter-btn');
+		$('#'+$(this).attr('parent')).append(clonedBtn);
+		$(this).remove();
+	});
+
+	var socket = io();
+	socket.on('message', writeEvent);
+	socket.on('letter_basket_init', initializeLetterBasket);
+
+	function writeEvent(text){
+	  const parent = document.getElementById('events');
+
+	  parent.innerHTML = text;
+	};
+
+	function generate() {
+		socket.emit('generate_letters', 5);
+	}
+
+	function initializeLetterBasket(basket) {
+		var clonedTable = $("#table-to-clone").clone().attr('id', 'letter-basket');
+		$("#init-basket").empty().append(clonedTable);
+		$( "#letter-basket" ).find('td').each(function( index ) {
+			var clonedBtn = $("#button-to-clone").clone().attr('id', 'btn'+index).addClass('basket-letter-btn');
+			clonedBtn.text(basket[index].character);
+			$( this ).append(clonedBtn);
+		});
+	}
+
+	function submitLetters(){
+		var word = ""
+		if ($('.rack-letter-btn').length) {
+			$('#rack').find('.rack-letter-btn').each(function( index ) {
+				word += $(this).text();
+			});
+			socket.emit('submit_word', word);
+		}
+	}
+
+	socket.on('generated_letters', function(data){
+		console.log(data);
+		var html = "";
+		data.forEach((letter) => {
+			html += "<li>"+letter.character+" - "+letter.points+"</li>";
+		})
+		document.getElementById('events').innerHTML = html;
+	});
+
+	socket.on('opponent_word', function(word) {
+		console.log(word)
+		for (var i = 0; i < word.length; i++) {
+			var clonedBtn = $("#button-to-clone").clone().removeAttr('id');
+			clonedBtn.text(word.charAt(i));
+			$("#rack").append(clonedBtn);
+		}
+
+		setTimeout(function(){
+			$("#rack").empty();
+		}, 2000);
+	});
+	
+</script>
+
+
+<ul id="letters">
+</ul>
+
+<div id="rack"></div>
+<div id="submit-btn"><button onclick="submitLetters()" >Submit</button></div>
+
+<div id="init-basket"></div>
+
+
+<table id="table-to-clone" align="center">
+	<tr><td id="td1"></td><td id="td2"></td><td id="td3"></td><td id="td4"></td></tr>
+	<tr><td id="td5"></td><td id="td6"></td><td id="td7"></td><td id="td8"></td></tr>
+	<tr><td id="td9"></td><td id="td10"></td><td id="td11"></td><td id="td12"></td></tr>
+</table>
+
+<button id="button-to-clone"></button>
+
+</body>
+</html>
