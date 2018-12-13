@@ -51,16 +51,8 @@ td {
 	margin: 30px 0 20px;
 	font-size: 30px;
 	height: 35px;
-<<<<<<< HEAD
 	font-family: 'Pacifico', cursive;
 	color: white;
-=======
-	color: #fff;
-	font-family: "Raleway", sans-serif;
-	font-weight: 500;
-	text-transform: uppercase;
-	/*border: 1px solid black;*/
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 }
 
 .rack-letter{
@@ -85,7 +77,6 @@ td {
 	color: #ddd;
 }
 
-<<<<<<< HEAD
 .letter-btn:before {
 	content: attr(data-points);
     font-size: 15px;
@@ -93,15 +84,6 @@ td {
     width: 30px;
     height: 30px;
     padding:5px;
-=======
-td button:before, #rack button:before {
-    content: attr(data-points);
-    font-size: 12px;
-    font-weight: bold;
-    width: 20px;
-    height: 20px;
-    padding:1px;
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
     line-height: 18px;
     text-align: center;
     display: block;
@@ -112,7 +94,6 @@ td button:before, #rack button:before {
     position: absolute;
     top: -10px;
     left: -10px;
-<<<<<<< HEAD
     z-index: 1;
 }
 
@@ -245,10 +226,6 @@ td button:before, #rack button:before {
 
 /***********************************/
 
-=======
-}
-
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 .inputField{
 	background: transparent;
 	border: none;
@@ -274,11 +251,7 @@ td button:before, #rack button:before {
 	border-radius: 10px;
 	width: 100%;
 	height: 320px;
-<<<<<<< HEAD
 	margin-top: -150px;
-=======
-	margin-top: -320px;
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 	position: absolute;
 	/*background: url(../img/playfield.jpg) top center;*/
 }
@@ -325,12 +298,8 @@ td button:before, #rack button:before {
 	height: 64px;
 	border-radius: 50%;
 	border: 1px black solid;
-<<<<<<< HEAD
 	margin-right: 400px;
 	background-color: white;
-=======
-	margin-right: 400px
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 }
 
 
@@ -340,10 +309,7 @@ td button:before, #rack button:before {
 	border-radius: 50%;
 	border: 1px black solid;
 	margin-left: 390px;
-<<<<<<< HEAD
 	background-color: white;
-=======
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 }
 
 .stats{
@@ -356,24 +322,13 @@ td button:before, #rack button:before {
 .playerText1{
 	font-size: 0.5em;
 	margin-top: -65px;
-<<<<<<< HEAD
 	margin-right: 200px;
-=======
-	margin-right: 250px;
-
-
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 }
 
 .playerText2{
 	font-size: 0.5em;
 	margin-top: -65px;
-<<<<<<< HEAD
 	margin-left: 200px
-=======
-	margin-left: 250px
-
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 }
 
 .lifeLine1{
@@ -421,10 +376,7 @@ td button:before, #rack button:before {
 	top: 560px;
 	/*background-color: maroon;*/
 	width: 50%;
-<<<<<<< HEAD
 	visibility: hidden;
-=======
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 }
 
 .submit-control{
@@ -449,13 +401,6 @@ td button:before, #rack button:before {
 	opacity: 0.7
 }
 
-<<<<<<< HEAD
-=======
-td:hover{
-	opacity: 0.7
-}
-
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 .scene{
 	width: 100%;
 	height: 100%;

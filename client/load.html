@@ -1,10 +1,7 @@
 <html>
 	<head>
 	  <!-- Favicons -->
-<<<<<<< HEAD
 	  <title>Bookworm</title>
-=======
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 	  <link href="client/img/favicon.png" rel="icon">
 	  <link href="client/img/apple-touch-icon.png" rel="apple-touch-icon">
 
@@ -38,10 +35,17 @@
 			<div id="loadField" class="loadingField">
 				<img src="client/img/worm.gif">
 			</div>
+
+			<div id="winField" class="loadingField" style="visibility: hidden;">
+				<a href="/"><img src="client/img/worm.gif"></a>
+				<p id="winnerName"></p>
+			</div>
+
 			<div id="gameField" class="intro-container">
 				<div class="playField">
 					<div class="scene">
 						<img src="client/img/playfield.gif" class="scene-bg">
+
 					</div>
 
 					<div class="player1">
@@ -80,28 +84,20 @@
 
 					<div class="rackField">
 						<div id="rack"></div>
-<<<<<<< HEAD
-=======
-						
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 					</div>
 
 					<div class="msgField">
 						<div id="message-container"></div>
 					</div>
 
-<<<<<<< HEAD
 					<div id="burst-12"></div>
 					<p id="score"></p>
 
-=======
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 				</div>
 
 
 				<div class="letterField">
 					<div id="init-basket"></div>
-<<<<<<< HEAD
 				</div>
 
 				<div id="legends">
@@ -110,29 +106,6 @@
 					<button class="letter-btn steal-life-btn">Steal<br>Life</button>
 				</div>
 
-=======
-					<table id="table-to-clone" align="center">
-						<tr>
-							<td id="td1"></td>
-							<td id="td2"></td>
-							<td id="td3"></td>
-							<td id="td4"></td>
-							<td id="td5"></td>
-							<td id="td6"></td>
-						</tr>
-						<tr>
-							<td id="td7"></td>
-							<td id="td8"></td>
-							<td id="td9"></td>
-							<td id="td10"></td>
-							<td id="td11"></td>
-							<td id="td12"></td>
-						</tr>
-					</table>
-					
-					<button id="button-to-clone"></button>
-				</div>
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 				<div class="controls">
 					<div class="submit-control" id="submit-btn">
 						<a onclick="submitLetters()">
@@ -148,7 +121,6 @@
 				</div>
 			</div>
 		</section>
-<<<<<<< HEAD
 
 		<table id="table-to-clone" align="center">
 			<tr>
@@ -169,8 +141,6 @@
 			</tr>
 		</table>
 		<button id="button-to-clone"></button>
-=======
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 	</body>
 
 

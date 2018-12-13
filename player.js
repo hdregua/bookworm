@@ -59,7 +59,6 @@ class Player{
 		return {character: letter, points: points[letter], potion: potion};
 	}
 
-<<<<<<< HEAD
 	_concoctPotion(){
 		const potions = ["x2","play-again", "steal-life"];
 		var index = Math.floor(Math.random() * 50)
@@ -71,23 +70,11 @@ class Player{
 
 	_updateLife(points){
 		this.life -= points;
-=======
-	_updateLife(word,index){
-		var totalPoints = 0
-
-		for(var i=0;i<word.length;i++){
-			var point = this._characterizeLetter(word[i])
-			totalPoints += parseInt(point['points'])
-		}
-
-		this.life -= totalPoints
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 		// this._displayLife(this.life)
 		// socket.emit('update_life', {i: index, current: this.life});
 		
 	}
 
-<<<<<<< HEAD
 	_addLife(points){
 		this.life += points;
 		if (this.life > 100) {
@@ -96,32 +83,19 @@ class Player{
 		
 	}
 
-=======
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 	_getLife(){
 		return this.life
 	}
 
 	_initializeField(index){
-<<<<<<< HEAD
 		if (index==0) {
 			this.interfaceName = 'Player 1'
-=======
-		console.log(index)
-		if (index==0) {
-			this.interfaceName = 'NAME1'
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 			this.interfacePic = 'wormie1.jpg'
 			this.interfaceLife = 'life1'
 			this.interfaceChar = 'char1.gif'
 		} else{
-<<<<<<< HEAD
 			this.interfaceName = 'Player 2'
 			this.interfacePic = 'wormie.png'
-=======
-			this.interfaceName = 'NAME2'
-			this.interfacePic = 'wormie2.jpg'
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 			this.interfaceLife = 'life2'
 			this.interfaceChar = 'char2.gif'
 		}
@@ -129,22 +103,13 @@ class Player{
 
 	_initializeOpponentField(index){
 		if (index==1) {
-<<<<<<< HEAD
 			this.opponentName = 'Player 1'
-=======
-			this.opponentName = 'NAME1'
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 			this.opponentPic = 'wormie1.jpg'
 			this.opponentLife = 'life1'
 			this.opponentChar = 'char1.gif'
 		} else{
-<<<<<<< HEAD
 			this.opponentName = 'Player 2'
 			this.opponentPic = 'wormie.png'
-=======
-			this.opponentName = 'NAME2'
-			this.opponentPic = 'wormie2.jpg'
->>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 			this.opponentLife = 'life2'
 			this.opponentChar = 'char2.gif'
 		}
