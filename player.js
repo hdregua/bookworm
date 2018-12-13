@@ -59,6 +59,41 @@ class Player{
 		return {character: letter, points: points[letter], potion: potion};
 	}
 
+	_updateLife(word,index){
+		var totalPoints = 0
+
+		for(var i=0;i<word.length;i++){
+			var point = this._characterizeLetter(word[i])
+			totalPoints += parseInt(point['points'])
+		}
+
+		this.life -= totalPoints
+		// this._displayLife(this.life)
+		// socket.emit('update_life', {i: index, current: this.life});
+		
+	}
+
+	_getLife(){
+		return this.life
+	}
+
+	_initializeField(index){
+		console.log(index)
+		if (index==0) {
+			this.interfaceName = 'NAME1'
+			this.interfacePic = 'wormie1.jpg'
+			this.interfaceLife = 'life1'
+			this.interfaceChar = 'char1.gif'
+		} else{
+			this.interfaceName = 'NAME2'
+			this.interfacePic = 'wormie2.jpg'
+			this.interfaceLife = 'life2'
+			this.interfaceChar = 'char2.gif'
+		}
+
+		// this.
+	}
+
 }
 
 module.exports = Player;

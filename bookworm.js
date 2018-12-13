@@ -8,7 +8,18 @@ class BookwormGame {
     this._players.forEach((player, index) => {
       player.socket.emit('letter_basket_init', {basket: player.letterBasket, turn: index});
     });
+
+    this._players.forEach((player) => {
+      player.socket.emit('character_field', {
+          name: player.interfaceName,
+          pic: player.interfacePic,
+          life: player.interfaceLife,
+          char: player.interfaceChar
+      });
+    });
   }
+
+  // _updateLifeStatus()
 
   _sendToPlayer(playerIndex, msg) {
     this._players[playerIndex].socket.emit('message', msg);
@@ -40,6 +51,12 @@ class BookwormGame {
   _sendSuccessMessage(playerIndex) {
     this._players[playerIndex].socket.emit('word_accepted', "10 points");
   }
+
+  // _updateLifeStatus(){
+  //   this._players.forEach((player, index) => {
+  //     player.socket.emit('update_life', {l: player.life, i:index});
+  //   });
+  // }
 }
 
 module.exports = BookwormGame;
