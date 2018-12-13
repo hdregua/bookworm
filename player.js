@@ -29,9 +29,9 @@ class Player{
 		return lettersGen;
 	}
 
-	_generateNewLetters(count) {
-		var lettersGen = this._generateLetters(count)
-		this.socket.emit('generated_letters', lettersGen);
+	_generateNewLetters(data) {
+		var lettersGen = this._generateLetters(data.count)
+		this.socket.emit('generated_letters', {letters: lettersGen, changeTurn: data.changeTurn});
 	}
 
 	_refreshBasket() {
@@ -48,7 +48,7 @@ class Player{
 		const point6 = 8;
 		const point7 = 10;
 
-		var potion=null;
+		var potion=this._concoctPotion();
 
 		const points = {
 			A:point1,B:point3,C:point3,D:point2,E:point1,F:point4,G:point2,
@@ -57,6 +57,62 @@ class Player{
 			U:point1,V:point4,W:point4,X:point6,Y:point4,Z:point7
 		}
 		return {character: letter, points: points[letter], potion: potion};
+	}
+
+	_concoctPotion(){
+		const potions = ["x2","play-again", "steal-life"];
+		var index = Math.floor(Math.random() * 50)
+		if( index < potions.length){
+			return potions[index];
+		}
+		return null;
+	}
+
+	_updateLife(points){
+		this.life -= points;
+		// this._displayLife(this.life)
+		// socket.emit('update_life', {i: index, current: this.life});
+		
+	}
+
+	_addLife(points){
+		this.life += points;
+		if (this.life > 100) {
+			this.life = 100;
+		}
+		
+	}
+
+	_getLife(){
+		return this.life
+	}
+
+	_initializeField(index){
+		if (index==0) {
+			this.interfaceName = 'Player 1'
+			this.interfacePic = 'wormie1.jpg'
+			this.interfaceLife = 'life1'
+			this.interfaceChar = 'char1.gif'
+		} else{
+			this.interfaceName = 'Player 2'
+			this.interfacePic = 'wormie.png'
+			this.interfaceLife = 'life2'
+			this.interfaceChar = 'char2.gif'
+		}
+	}
+
+	_initializeOpponentField(index){
+		if (index==1) {
+			this.opponentName = 'Player 1'
+			this.opponentPic = 'wormie1.jpg'
+			this.opponentLife = 'life1'
+			this.opponentChar = 'char1.gif'
+		} else{
+			this.opponentName = 'Player 2'
+			this.opponentPic = 'wormie.png'
+			this.opponentLife = 'life2'
+			this.opponentChar = 'char2.gif'
+		}
 	}
 
 }
