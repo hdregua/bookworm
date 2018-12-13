@@ -147,34 +147,18 @@ socket.on('character_field',function({name,pic,life,char}){
 	playerId.childNodes[1].id = life;
 	playerChar.src = "../client/img/chars/"+char;
 
-	// if(index==1){
-	// 	$('#currentPlayerName').html("NAME1");
-	// 	playerPic.src = "../client/img/chars/wormie.jpg";
-	// 	playerId.childNodes[1].id = "life1";
-	// 	playerChar.src = "../client/img/chars/char.gif";
+});
 
+socket.on('opponent_field',function({name,pic,life,char}){
+	var playerPic = document.getElementById('opponentPic')
+	var playerId = document.getElementById('opponentId')
+	var playerChar = document.getElementById('opponentChar')
+	var playerName = document.getElementById('opponentName')
 
-	// } else{
-	// 	$('#currentPlayerName').html("NAME2");
-	// 	playerPic.src = "../client/img/chars/wormie.jpg";
-	// 	playerId.childNodes[1].id = "life2";
-	// 	playerChar.src = "../client/img/chars/char2.gif";
-	// }
-
-	// if(i2==0){
-	// 	$('#currentPlayerName').html("NAME2");
-	// 	playerPic.src = "../client/img/chars/wormie.jpg";
-	// 	playerId.childNodes[1].id = "life2";
-	// 	playerChar.src = "../client/img/chars/char2.gif";
-
-
-	// } else{
-	// 	$('#currentPlayerName').html("NAME1");
-	// 	playerPic.src = "../client/img/chars/wormie.jpg";
-	// 	playerId.childNodes[1].id = "life1";
-	// 	playerChar.src = "../client/img/chars/char.gif";
-	// }
-	
+	$('#opponentName').html(name);
+	playerPic.src = "../client/img/chars/"+pic;
+	playerId.childNodes[1].id = life;
+	playerChar.src = "../client/img/chars/"+char;
 
 });
 

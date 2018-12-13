@@ -32,6 +32,8 @@ io.sockets.on('connection', function(socket){
 		
 		players[0]._initializeField(0)
 		players[1]._initializeField(1)
+		players[0]._initializeOpponentField(0)
+		players[1]._initializeOpponentField(1)
 		game = new BookwormGame(players);
 		io.sockets.emit('display_field',false);
 

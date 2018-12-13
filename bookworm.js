@@ -17,6 +17,15 @@ class BookwormGame {
           char: player.interfaceChar
       });
     });
+
+    this._players.forEach((player) => {
+      player.socket.emit('opponent_field', {
+          name: player.opponentName,
+          pic: player.opponentPic,
+          life: player.opponentLife,
+          char: player.opponentChar
+      });
+    });
   }
 
   // _updateLifeStatus()

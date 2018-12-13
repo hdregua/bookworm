@@ -90,8 +90,20 @@ class Player{
 			this.interfaceLife = 'life2'
 			this.interfaceChar = 'char2.gif'
 		}
+	}
 
-		// this.
+	_initializeOpponentField(index){
+		if (index==1) {
+			this.opponentName = 'NAME1'
+			this.opponentPic = 'wormie1.jpg'
+			this.opponentLife = 'life1'
+			this.opponentChar = 'char1.gif'
+		} else{
+			this.opponentName = 'NAME2'
+			this.opponentPic = 'wormie2.jpg'
+			this.opponentLife = 'life2'
+			this.opponentChar = 'char2.gif'
+		}
 	}
 
 }
