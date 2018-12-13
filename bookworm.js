@@ -30,7 +30,11 @@ class BookwormGame {
 
   // _updateLifeStatus()
 
+<<<<<<< HEAD
    _sendToPlayer(playerIndex, msg) {
+=======
+  _sendToPlayer(playerIndex, msg) {
+>>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
     this._players[playerIndex].socket.emit('message', msg);
   }
 
@@ -61,6 +65,14 @@ class BookwormGame {
     this._players[playerIndex].socket.emit('word_accepted', points);
   }
 
+<<<<<<< HEAD
+=======
+  // _updateLifeStatus(){
+  //   this._players.forEach((player, index) => {
+  //     player.socket.emit('update_life', {l: player.life, i:index});
+  //   });
+  // }
+>>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 }
 
 module.exports = BookwormGame;

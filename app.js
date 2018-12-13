@@ -28,11 +28,20 @@ var game = null;
 io.sockets.on('connection', function(socket){
 	players.push(new Player(socket));
 	if (players.length == 2) {
+<<<<<<< HEAD
 		players.forEach((player, index)=>{
 			player._initializeBasket();
 			player._initializeField(index)
 			player._initializeOpponentField(index)
 		});
+=======
+		players.forEach((player)=>{player._initializeBasket()})
+		
+		players[0]._initializeField(0)
+		players[1]._initializeField(1)
+		players[0]._initializeOpponentField(0)
+		players[1]._initializeOpponentField(1)
+>>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 		game = new BookwormGame(players);
 		io.sockets.emit('display_field',false);
 
@@ -67,6 +76,7 @@ io.sockets.on('connection', function(socket){
 		var checkWord = require('check-word');
 		var dictionary  = checkWord('en');
 		var opponentIndex = players[0].socket == socket ? 1 : 0;
+<<<<<<< HEAD
 		var playerIndex = (opponentIndex+1)%2;
 		// console.log(players[0]._getLife())
 		if(dictionary.check(data.word.toLowerCase())){
@@ -109,6 +119,18 @@ io.sockets.on('connection', function(socket){
 				players[playerIndex]._addLife(points);
 				io.sockets.emit('update_life',{l1: players[0].life,l2: players[1].life})
 			}
+=======
+		// console.log(players[0]._getLife())
+		if(dictionary.check(word.toLowerCase())){
+			game._sendToOpponent(opponentIndex, word);
+			game._changeTurn(opponentIndex);
+			game._sendSuccessMessage((opponentIndex+1)%2);
+			players[opponentIndex]._updateLife(word,opponentIndex);
+			// game._updateLifeStatus()
+			// players.forEach((player)=>{player._initializeBasket()})
+			io.sockets.emit('update_life',{l1: players[0].life,l2: players[1].life})
+			
+>>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 
 		} else {
 			game._sendToPlayer(playerIndex, "Invalid Word!");

@@ -6,6 +6,7 @@ socket.on('new_letter_basket', showLetterBasket);
 
 var emptyCell = [];
 
+<<<<<<< HEAD
 $(document).on('click','.basket-letter',function(){
 		var clonedBtn = $(this).clone().removeClass('basket-letter').addClass('rack-letter').attr('parent', $(this).parent().attr('id'));
 		$("#rack").append(clonedBtn);
@@ -134,6 +135,116 @@ $(document).on('click','.basket-letter',function(){
 			$("#burst-12").hide();
 		}, 3000);
 	}
+=======
+$(document).on('click','.basket-letter-btn',function(){
+	var clonedBtn = $(this).clone().removeClass('basket-letter-btn').addClass('rack-letter-btn').attr('parent', $(this).parent().attr('id'));
+	$("#rack").append(clonedBtn);
+	$(this).remove();
+});
+
+$(document).on('click','.rack-letter-btn',function(){
+	var clonedBtn = $(this).clone().removeClass('rack-letter-btn').addClass('basket-letter-btn').removeAttr('parent');
+	$('#'+$(this).attr('parent')).append(clonedBtn);
+	$(this).remove();
+});
+
+function writeEvent(text){
+  $('#message-container').html(text);
+	setTimeout(function(){
+		$("#message-container").empty();
+	},3000);
+};
+
+function tryEvent(text){
+	$("#try").empty();
+	$('#try').html(text);
+}
+
+function showLetterBasket(data) {
+	var clonedTable = $("#table-to-clone").clone().attr('id', 'letter-basket');
+	$("#init-basket").empty().append(clonedTable);
+	$( "#letter-basket" ).find('td').each(function( index ) {
+		var clonedBtn = $("#button-to-clone").clone().attr('id', 'btn'+index).addClass('basket-letter-btn').attr('data-points', data.basket[index].points);
+		clonedBtn.text(data.basket[index].character);
+		$( this ).append(clonedBtn);
+	});
+
+	if (!data.turn) {
+		$("#submit-btn > button").attr('disabled', true);
+		$('.basket-letter-btn').attr('disabled', true);
+		$("#refresh-basket-btn > button").attr('disabled', true);
+		writeEvent("Opponent's Turn");
+	}
+}
+
+function submitLetters(){
+	var word = ""
+	if ($('.rack-letter-btn').length) {
+		emptyCell = [];
+		$('#rack').find('.rack-letter-btn').each(function( index ) {
+			word += $(this).text();
+			emptyCell.push($(this).attr('parent'));
+		});
+		socket.emit('submit_word', word);
+	}
+
+	
+}
+
+function refreshBasket() {
+	socket.emit('refresh_basket');
+	$("#rack").empty();
+	var element = document.getElementById("lifeUpdate")
+	var para = document.createElement("p")
+	var node = document.createTextNode("This is new.")
+	para.appendChild(node);
+	element.appendChild(para)
+	tryEvent("HELLO WORLD")
+
+}
+
+socket.on('generated_letters', function(data){
+	data.forEach((letter, index) => {
+		var clonedBtn = $("#button-to-clone").clone().addClass('basket-letter-btn').removeAttr('id').text(letter.character).attr('disabled', true).attr('data-points', letter.points);
+		$('#'+emptyCell[index]).append(clonedBtn);
+	})
+});
+
+socket.on('opponent_word', function(word) {
+	$("#rack").empty();
+	for (var i = 0; i < word.length; i++) {
+		var clonedBtn = $("#button-to-clone").clone().removeAttr('id');
+		clonedBtn.text(word.charAt(i));
+		$("#rack").append(clonedBtn);
+	}
+
+	writeEvent("Opponent's word:");
+
+	setTimeout(function(){
+		$("#rack").empty();
+		writeEvent("Your turn");
+	}, 3000);
+});
+
+socket.on('word_accepted', function(message) {
+	socket.emit('generate_letters', $('.rack-letter-btn').length);
+	$("#rack").empty();
+});
+
+socket.on('your_turn', function(message) {
+	$("#submit-btn > button").attr('disabled', false);
+	$('.basket-letter-btn').attr('disabled', false);
+	$('#refresh-basket-btn > button').attr('disabled', false);
+	// writeEvent("Your turn!");
+});
+
+socket.on('change_turn', function(message) {
+	$("#submit-btn > button").attr('disabled', true);
+	$('.basket-letter-btn').attr('disabled', true);
+	$('#refresh-basket-btn > button').attr('disabled', true);
+	writeEvent("Opponent's Turn")
+});
+>>>>>>> 65003168bedf435f72136a2f1de7509db5b82fab
 
 socket.on('update_life', function({l1,l2}) {
 	// i += 1
